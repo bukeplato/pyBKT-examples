@@ -28,12 +28,13 @@ def main():
     # ct_df.head(5)
 
     model = Model(seed=42, num_fits=1)
-    model.fit(data_path='data/ct.csv', skills=".*fraction.*")
-    preds = model.predict(data_path='data/ct.csv')
+    model.fit(data_path='data/ct_myfix.csv', skills=".*fraction.*")
+    preds = model.predict(data_path='data/ct_myfix.csv')
     print(preds)
     # print(preds[['Anon Student Id', 'KC(Default)', 'Correct First Attempt',
     #              'correct_predictions', 'state_predictions']])
-    preds.to_csv('./output/prediction.csv')     # 文件会产生在远程机器上
+    # preds.to_csv('./output/prediction.csv')     # 文件会产生在远程机器上
+
 
 if __name__ == '__main__':
     sys.exit(main())
