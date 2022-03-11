@@ -65,10 +65,10 @@ def predict_stu():
     preds2.to_csv('./output/predic112_from_pkl.csv')  # 文件会产生在远程机器上
 
 
-
 def main():
-    train_model()
+    # train_model()
     predict_stu()
+
 
 if __name__ == '__main__':
     sys.exit(main())
