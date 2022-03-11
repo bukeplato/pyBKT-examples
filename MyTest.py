@@ -1,11 +1,8 @@
 import datetime
-import pickle
 import sys
-import json
 import numpy as np
 from pyBKT.models import Model
 import pandas as pd
-import joblib
 
 pd.set_option('display.max_rows', 50)  #最大行数
 pd.set_option('display.max_columns', None)    #最大列数
@@ -29,7 +26,6 @@ def train_model():
     # print(ct_df.columns)
     # ct_df.head(5)
 
-
     model = Model(seed=42, num_fits=10)
     # model.coef_ = {'Plot imperfect radical': {'prior': 0.1, 'learns': np.array([0.1])}}
 
@@ -49,7 +45,10 @@ def train_model():
     preds.to_csv('./output/prediction2.csv')     # 文件会产生在远程机器上
     # 每个模型拟合结束后，将评估结果保存
 
+
 def predict_stu():
+    model_start_time = datetime.datetime.now()
+
     model111 = Model()
     model111.load('./output/forgets_n_test1_fits_010.pkl')
     # Pkl_Filename = './output/forgets_n_test1_fits_010.pkl'
@@ -60,9 +59,12 @@ def predict_stu():
     print(preds)
     preds.to_csv('./output/predic111_from_pkl.csv')  # 文件会产生在远程机器上
 
-    preds2 = model111.predict(data_path='data/ct_myfix.csv')
-    print(preds2)
-    preds2.to_csv('./output/predic112_from_pkl.csv')  # 文件会产生在远程机器上
+    # preds2 = model111.predict(data_path='data/ct_myfix.csv')
+    # print(preds2)
+    # preds2.to_csv('./output/predic112_from_pkl.csv')  # 文件会产生在远程机器上
+
+    model_end_time = datetime.datetime.now()
+    print('===== predict is end，time: ', model_end_time - model_start_time)
 
 
 def main():
